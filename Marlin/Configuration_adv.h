@@ -859,7 +859,7 @@
   #define FEEDRATE_CHANGE_BEEP_FREQUENCY 440
 #endif
 
-#if HAS_LCD_MENU
+// #if HAS_LCD_MENU
 
   // Include a page of printer information in the LCD Main Menu
   #define LCD_INFO_MENU
@@ -887,7 +887,7 @@
     #endif
   #endif
 
-#endif // HAS_LCD_MENU
+// #endif // HAS_LCD_MENU
 
 // Scroll a longer status message into view
 #define STATUS_MESSAGE_SCROLLING
