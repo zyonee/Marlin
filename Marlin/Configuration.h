@@ -1440,7 +1440,7 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 190
+#define PREHEAT_1_TEMP_HOTEND 205
 #define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_FAN_SPEED   0 // Value from 0 to 255
 
