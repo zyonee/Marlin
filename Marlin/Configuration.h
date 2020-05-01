@@ -491,15 +491,14 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
   // Personal auto-tuned values
-  #define DEFAULT_Kp 25.73
-  #define DEFAULT_Ki 2.86
-  #define DEFAULT_Kd 57.80
-
+  #define DEFAULT_Kp 26.12
+  #define DEFAULT_Ki 3.00
+  #define DEFAULT_Kd 56.86
 
   // Creality Ender-3
-  #define DEFAULT_Kp 21.73
-  #define DEFAULT_Ki 1.54
-  #define DEFAULT_Kd 76.55
+  //#define DEFAULT_Kp 21.73
+  //#define DEFAULT_Ki 1.54
+  //#define DEFAULT_Kd 76.55
 
   // Ultimaker
   //#define DEFAULT_Kp 22.2
@@ -552,9 +551,9 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
   // Personal auto-tuned values
-  #define DEFAULT_bedKp 125.72
-  #define DEFAULT_bedKi 24.65
-  #define DEFAULT_bedKd 427.72
+  #define DEFAULT_bedKp 104.77
+  #define DEFAULT_bedKi 20.93
+  #define DEFAULT_bedKd 349.58
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
