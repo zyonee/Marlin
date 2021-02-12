@@ -489,13 +489,13 @@
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify between 1 and HOTENDS values per array.
     // If fewer than EXTRUDER values are provided, the last element will be repeated.
-    #define DEFAULT_Kp_LIST {  17.10,  17.10 }
-    #define DEFAULT_Ki_LIST {   1.18,   1.18 }
-    #define DEFAULT_Kd_LIST { 62.15, 62.15 }
+    #define DEFAULT_Kp_LIST {  15.87,  15.87 }
+    #define DEFAULT_Ki_LIST {   0.99,   0.99 }
+    #define DEFAULT_Kd_LIST { 63.59, 63.59 }
   #else
-  #define DEFAULT_Kp 17.10
-  #define DEFAULT_Ki 1.18
-  #define DEFAULT_Kd 62.15
+  #define DEFAULT_Kp 15.87
+  #define DEFAULT_Ki 0.99
+  #define DEFAULT_Kd 63.59
   #endif
 #endif // PIDTEMP
 
@@ -535,9 +535,9 @@
   // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
   // Personal auto-tuned values
-  #define DEFAULT_bedKp 104.77
-  #define DEFAULT_bedKi 20.93
-  #define DEFAULT_bedKd 349.58
+  #define DEFAULT_bedKp 89.16
+  #define DEFAULT_bedKi 15.95
+  #define DEFAULT_bedKd 332.32
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -618,7 +618,7 @@
 #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
-//#define USE_XMAX_PLUG
+#define USE_XMAX_PLUG
 //#define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
 
@@ -1122,7 +1122,7 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
+#define INVERT_X_DIR true
 #define INVERT_Y_DIR false
 #define INVERT_Z_DIR true
 
@@ -1151,7 +1151,7 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
+#define X_HOME_DIR 1
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
 
@@ -1159,7 +1159,7 @@
 
 // The size of the print bed
 #define X_BED_SIZE 235
-#define Y_BED_SIZE 235
+#define Y_BED_SIZE 192
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
