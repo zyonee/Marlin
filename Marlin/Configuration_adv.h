@@ -2730,8 +2730,10 @@
  *     L6470_CHAIN_MISO_PIN
  *     L6470_CHAIN_MOSI_PIN
  *     L6470_CHAIN_SS_PIN
- *     ENABLE_RESET_L64XX_CHIPS(Q)  where Q is 1 to enable and 0 to resCURRENT
+ *     ENABLE_RESET_L64XX_CHIPS(Q)  where Q is 1 to enable and 0 to reset
+ */
 
+#if HAS_L64XX
   //#define L6470_CHITCHAT        // Display additional status info
 
   #if AXIS_IS_L64XX(X)
