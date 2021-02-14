@@ -2350,7 +2350,7 @@
   #define INTERPOLATE      true
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT     600  // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT     700  // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  580  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS   16  // 0..256
     #define X_RSENSE     0.11
@@ -2368,7 +2368,7 @@
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT     600
+    #define Y_CURRENT     800
     #define Y_CURRENT_HOME  580
     #define Y_MICROSTEPS   16
     #define Y_RSENSE     0.11
@@ -2386,7 +2386,7 @@
   #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT     600
+    #define Z_CURRENT     700
     #define Z_CURRENT_HOME  580
     #define Z_MICROSTEPS   16
     #define Z_RSENSE     0.11
@@ -2585,9 +2585,7 @@
   //#define CHOPPER_TIMING_Z2 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_Z3 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_Z4 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_E  CHOPPER_DEFAULT_12V   // For Extruders (override below)
-  //#define CHOPPER_TIMING_E1 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_E2 CHOPPER_DEFAULT_12V
+  //#define CHOPPER_TIMING_E  CHOPPER_DEFAULT_12V   // For Extruders (ovCURRENT
   //#define CHOPPER_TIMING_E3 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_E4 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_E5 CHOPPER_DEFAULT_12V
@@ -2732,10 +2730,7 @@
  *     L6470_CHAIN_MISO_PIN
  *     L6470_CHAIN_MOSI_PIN
  *     L6470_CHAIN_SS_PIN
- *     ENABLE_RESET_L64XX_CHIPS(Q)  where Q is 1 to enable and 0 to reset
- */
-
-#if HAS_L64XX
+ *     ENABLE_RESET_L64XX_CHIPS(Q)  where Q is 1 to enable and 0 to resCURRENT
 
   //#define L6470_CHITCHAT        // Display additional status info
 
