@@ -2577,15 +2577,15 @@
    * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
    */
   #define CHOPPER_TIMING CHOPPER_DEFAULT_24V        // All axes (override below)
-  //#define CHOPPER_TIMING_X  CHOPPER_DEFAULT_12V   // For X Axes (override below)
+  #define CHOPPER_TIMING_X  CHOPPER_09STEP_24V   // For X Axes (override below)
   //#define CHOPPER_TIMING_X2 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_Y  CHOPPER_DEFAULT_12V   // For Y Axes (override below)
-  //#define CHOPPER_TIMING_Y2 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_Z  CHOPPER_DEFAULT_12V   // For Z Axes (override below)
+  #define CHOPPER_TIMING_Y  CHOPPER_09STEP_24V   // For Y Axes (override below)
+  #define CHOPPER_TIMING_Y2 CHOPPER_09STEP_24V
+  #define CHOPPER_TIMING_Z  CHOPPER_DEFAULT_24V   // For Z Axes (override below)
   //#define CHOPPER_TIMING_Z2 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_Z3 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_Z4 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_E  CHOPPER_DEFAULT_12V   // For Extruders (ovCURRENT
+  #define CHOPPER_TIMING_E  CHOPPER_DEFAULT_24V   // For Extruders (ovCURRENT
   //#define CHOPPER_TIMING_E3 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_E4 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_E5 CHOPPER_DEFAULT_12V
