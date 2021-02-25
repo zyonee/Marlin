@@ -1690,24 +1690,15 @@
 // Preheat Constants - Up to 5 are supported without changes
 //
 #define PREHEAT_1_LABEL       "PLA"
-<<<<<<< HEAD
 #define PREHEAT_1_TEMP_HOTEND 200
 #define PREHEAT_1_TEMP_BED     60
-=======
-#define PREHEAT_1_TEMP_HOTEND 180
-#define PREHEAT_1_TEMP_BED     70
 #define PREHEAT_1_TEMP_CHAMBER 35
->>>>>>> bcda46e3f3435a1f87d224be2f81778c1855deb7
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "PETG"
 #define PREHEAT_2_TEMP_HOTEND 240
-<<<<<<< HEAD
 #define PREHEAT_2_TEMP_BED    80
-=======
-#define PREHEAT_2_TEMP_BED    110
 #define PREHEAT_2_TEMP_CHAMBER 35
->>>>>>> bcda46e3f3435a1f87d224be2f81778c1855deb7
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
 /**
