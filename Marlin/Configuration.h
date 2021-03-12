@@ -418,7 +418,7 @@
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
-#define TEMP_SENSOR_BED 1
+#define TEMP_SENSOR_BED 11
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 #define TEMP_SENSOR_COOLER 0
@@ -506,13 +506,13 @@
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify between 1 and HOTENDS values per array.
     // If fewer than EXTRUDER values are provided, the last element will be repeated.
-    #define DEFAULT_Kp_LIST {  15.87,  15.87 }
-    #define DEFAULT_Ki_LIST {   0.99,   0.99 }
-    #define DEFAULT_Kd_LIST { 63.59, 63.59 }
+    #define DEFAULT_Kp_LIST {  20.375,  20.375 }
+    #define DEFAULT_Ki_LIST {   1.021,   1.021 }
+    #define DEFAULT_Kd_LIST { 101.620, 101.620 }
   #else
-  #define DEFAULT_Kp 15.87
-  #define DEFAULT_Ki 0.99
-  #define DEFAULT_Kd 63.59
+  #define DEFAULT_Kp 20.375
+  #define DEFAULT_Ki 1.021
+  #define DEFAULT_Kd 101.620
   #endif
 #endif // PIDTEMP
 
@@ -552,9 +552,9 @@
   // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
   // Personal auto-tuned values
-  #define DEFAULT_bedKp 89.16
-  #define DEFAULT_bedKi 15.95
-  #define DEFAULT_bedKd 332.32
+  #define DEFAULT_bedKp 64.986
+  #define DEFAULT_bedKi 0.989
+  #define DEFAULT_bedKd 1067.394
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
