@@ -640,7 +640,7 @@
   #endif
 #endif
 
-#define Y_DUAL_STEPPER_DRIVERS
+//#define Y_DUAL_STEPPER_DRIVERS
 #if ENABLED(Y_DUAL_STEPPER_DRIVERS)
   //#define INVERT_Y2_VS_Y_DIR   // Enable if Y2 direction signal is opposite to Y
   //#define Y_DUAL_ENDSTOPS
@@ -1623,6 +1623,31 @@
 #endif // HAS_DGUS_LCD
 
 //
+// Additional options for AnyCubic Chiron TFT displays
+//
+#if ENABLED(ANYCUBIC_LCD_CHIRON)
+  // By default the type of panel is automatically detected.
+  // Enable one of these options if you know the panel type.
+  //#define CHIRON_TFT_STANDARD
+  //#define CHIRON_TFT_NEW
+
+  // Enable the longer Anycubic powerup startup tune
+  //#define AC_DEFAULT_STARTUP_TUNE
+
+  /**
+   * Display Folders
+   * By default the file browser lists all G-code files (including those in subfolders) in a flat list.
+   * Enable this option to display a hierarchical file browser.
+   *
+   * NOTES:
+   * - Without this option it helps to enable SDCARD_SORT_ALPHA so files are sorted before/after folders.
+   * - When used with the "new" panel, folder names will also have '.gcode' appended to their names.
+   *   This hack is currently required to force the panel to show folders.
+   */
+  #define AC_SD_FOLDER_VIEW
+#endif
+
+//
 // Specify additional languages for the UI. Default specified by LCD_LANGUAGE.
 //
 #if ANY(DOGLCD, TFT_COLOR_UI, TOUCH_UI_FTDI_EVE)
@@ -2120,6 +2145,26 @@
  */
 //#define EMERGENCY_PARSER
 
+/**
+ * Realtime Reporting (requires EMERGENCY_PARSER)
+ *
+ * - Report position and state of the machine (like Grbl).
+ * - Auto-report position during long moves.
+ * - Useful for CNC/LASER.
+ *
+ * Adds support for commands:
+ *  S000 : Report State and Position while moving.
+ *  P000 : Instant Pause / Hold while moving.
+ *  R000 : Resume from Pause / Hold.
+ *
+ * - During Hold all Emergency Parser commands are available, as usual.
+ * - Enable NANODLP_Z_SYNC and NANODLP_ALL_AXIS for move command end-state reports.
+ */
+//#define REALTIME_REPORTING_COMMANDS
+#if ENABLED(REALTIME_REPORTING_COMMANDS)
+  //#define FULL_REPORT_TO_HOST_FEATURE   // Auto-report the machine status like Grbl CNC
+#endif
+
 // Bad Serial-connections can miss a received command by sending an 'ok'
 // Therefore some clients abort after 30 seconds in a timeout.
 // Some other clients start sending commands while receiving a 'wait'.
@@ -2193,6 +2238,12 @@
   #if ENABLED(TOOLCHANGE_NO_RETURN)
     //#define EVENT_GCODE_AFTER_TOOLCHANGE "G12X"   // Extra G-code to run after tool-change
   #endif
+
+  /**
+   * Tool Sensors detect when tools have been picked up or dropped.
+   * Requires the pins TOOL_SENSOR1_PIN, TOOL_SENSOR2_PIN, etc.
+   */
+  //#define TOOL_SENSOR
 
   /**
    * Retract and prime filament on tool-change to reduce
@@ -2443,7 +2494,7 @@
   #define INTERPOLATE      true
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT     1050  // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT     950  // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  580  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS   16  // 0..256
     #define X_RSENSE     0.11
@@ -2461,7 +2512,7 @@
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT     1050
+    #define Y_CURRENT     950
     #define Y_CURRENT_HOME  500
     #define Y_MICROSTEPS   16
     #define Y_RSENSE     0.11
@@ -2470,8 +2521,8 @@
   #endif
 
   #if AXIS_IS_TMC(Y2)
-    #define Y2_CURRENT      1050
-    #define Y2_CURRENT_HOME 500
+    #define Y2_CURRENT      800
+    #define Y2_CURRENT_HOME Y2_CURRENT
     #define Y2_MICROSTEPS    Y_MICROSTEPS
     #define Y2_RSENSE         0.11
     #define Y2_CHAIN_POS     -1
@@ -2479,7 +2530,7 @@
   #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT     700
+    #define Z_CURRENT     950
     #define Z_CURRENT_HOME  580
     #define Z_MICROSTEPS   16
     #define Z_RSENSE     0.11
@@ -2670,20 +2721,22 @@
    * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
    */
   #define CHOPPER_TIMING CHOPPER_DEFAULT_24V        // All axes (override below)
-  #define CHOPPER_TIMING_X  CHOPPER_09STEP_24V   // For X Axes (override below)
-  //#define CHOPPER_TIMING_X2 CHOPPER_DEFAULT_12V
-  #define CHOPPER_TIMING_Y  CHOPPER_09STEP_24V   // For Y Axes (override below)
-  #define CHOPPER_TIMING_Y2 CHOPPER_09STEP_24V
-  #define CHOPPER_TIMING_Z  CHOPPER_DEFAULT_24V   // For Z Axes (override below)
-  //#define CHOPPER_TIMING_Z2 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_Z3 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_Z4 CHOPPER_DEFAULT_12V
-  #define CHOPPER_TIMING_E  CHOPPER_DEFAULT_24V   // For Extruders (ovCURRENT
-  //#define CHOPPER_TIMING_E3 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_E4 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_E5 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_E6 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_E7 CHOPPER_DEFAULT_12V
+  #define CHOPPER_TIMING_X  CHOPPER_09STEP_24V        // For X Axes (override below)
+  //#define CHOPPER_TIMING_X2 CHOPPER_TIMING_X
+  #define CHOPPER_TIMING_Y  CHOPPER_09STEP_24V        // For Y Axes (override below)
+  //#define CHOPPER_TIMING_Y2 CHOPPER_TIMING_Y
+  #define CHOPPER_TIMING_Z  CHOPPER_09STEP_24V        // For Z Axes (override below)
+  //#define CHOPPER_TIMING_Z2 CHOPPER_TIMING_Z
+  //#define CHOPPER_TIMING_Z3 CHOPPER_TIMING_Z
+  //#define CHOPPER_TIMING_Z4 CHOPPER_TIMING_Z
+  #define CHOPPER_TIMING_E  CHOPPER_DEFAULT_24V       // For Extruders (override below)
+  //#define CHOPPER_TIMING_E1 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E2 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E3 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E4 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E5 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E6 CHOPPER_TIMING_E
+  //#define CHOPPER_TIMING_E7 CHOPPER_TIMING_E
 
   /**
    * Monitor Trinamic drivers
@@ -3740,14 +3793,13 @@
 /**
  * NanoDLP Sync support
  *
- * Add support for Synchronized Z moves when using with NanoDLP. G0/G1 axis moves will output "Z_move_comp"
- * string to enable synchronization with DLP projector exposure. This change will allow to use
- * [[WaitForDoneMessage]] instead of populating your gcode with M400 commands
+ * Support for Synchronized Z moves when used with NanoDLP. G0/G1 axis moves will
+ * output a "Z_move_comp" string to enable synchronization with DLP projector exposure.
+ * This feature allows you to use [[WaitForDoneMessage]] instead of M400 commands.
  */
 //#define NANODLP_Z_SYNC
 #if ENABLED(NANODLP_Z_SYNC)
-  //#define NANODLP_ALL_AXIS  // Enables "Z_move_comp" output on any axis move.
-                              // Default behavior is limited to Z axis only.
+  //#define NANODLP_ALL_AXIS  // Send a "Z_move_comp" report for any axis move (not just Z).
 #endif
 
 /**
