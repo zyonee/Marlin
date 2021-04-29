@@ -738,7 +738,7 @@
 
   // Safety: The probe needs time to recognize the command.
   //         Minimum command delay (ms). Enable and increase if needed.
-  #define BLTOUCH_DELAY 700
+  #define BLTOUCH_DELAY 500
 
   /**
    * Settings for BLTOUCH Classic 1.2, 1.3 or BLTouch Smart 1.0, 2.0, 2.2, 3.0, 3.1, and most clones:
@@ -772,7 +772,7 @@
    * V3.1: Force a probe with unknown mode into selected mode at Marlin startup ( = Probe EEPROM write )
    * To preserve the life of the probe, use this once then turn it off and re-flash.
    */
-  //#define BLTOUCH_FORCE_MODE_SET
+  #define BLTOUCH_FORCE_MODE_SET
 
   /**
    * Use "HIGH SPEED" mode for probing.
@@ -783,7 +783,7 @@
   #define BLTOUCH_HS_MODE
 
   // Safety: Enable voltage mode settings in the LCD menu.
-  #define BLTOUCH_LCD_VOLTAGE_MENU
+  //#define BLTOUCH_LCD_VOLTAGE_MENU
 
 #endif // BLTOUCH
 
@@ -1853,10 +1853,10 @@
 
 #if EITHER(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)
   // Override the mesh area if the automatic (max) area is too large
-  //#define MESH_MIN_X MESH_INSET
-  //#define MESH_MIN_Y MESH_INSET
-  //#define MESH_MAX_X X_BED_SIZE - (MESH_INSET)
-  //#define MESH_MAX_Y Y_BED_SIZE - (MESH_INSET)
+  #define MESH_MIN_X 40
+  #define MESH_MIN_Y 20
+  #define MESH_MAX_X 232
+  #define MESH_MAX_Y 235
 #endif
 
 #if BOTH(AUTO_BED_LEVELING_UBL, EEPROM_SETTINGS)
