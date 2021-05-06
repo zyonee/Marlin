@@ -2298,9 +2298,6 @@ void HMI_PauseOrStop() {
       if (HMI_flag.select_flag) {
         HMI_flag.pause_action = true;
         ICON_Continue();
-        #if ENABLED(POWER_LOSS_RECOVERY)
-          if (recovery.enabled) recovery.save(true);
-        #endif
         queue.inject_P(PSTR("M25"));
       }
       else {
@@ -2381,10 +2378,12 @@ void Draw_AdvSet_Menu() {
   #endif
   if (AVISI(ADVSET_CASE_HEPID)) Draw_Menu_Line(ASCROL(ADVSET_CASE_HEPID), ICON_PIDNozzle, "Hotend PID", false);  // Nozzle PID
   if (AVISI(ADVSET_CASE_BEDPID)) Draw_Menu_Line(ASCROL(ADVSET_CASE_BEDPID), ICON_PIDbed, "Bed PID", false);  // Bed PID
-  if (AVISI(ADVSET_CASE_PWRLOSSR)) {
-    Draw_Menu_Line(ASCROL(ADVSET_CASE_PWRLOSSR), ICON_Motion, "Power-loss recovery", false);  // Power-loss recovery
-    Draw_Chkb_Line(ASCROL(ADVSET_CASE_PWRLOSSR), recovery.enabled);
-  }
+  #if ENABLED(POWER_LOSS_RECOVERY)
+    if (AVISI(ADVSET_CASE_PWRLOSSR)) {
+      Draw_Menu_Line(ASCROL(ADVSET_CASE_PWRLOSSR), ICON_Motion, "Power-loss recovery", false);  // Power-loss recovery
+      Draw_Chkb_Line(ASCROL(ADVSET_CASE_PWRLOSSR), recovery.enabled);
+    }
+  #endif
   if (select_advset.now) Draw_Menu_Cursor(ASCROL(select_advset.now));
 }
 
@@ -3409,10 +3408,12 @@ void HMI_AdvSet() {
           break;
       #endif
 
-      case ADVSET_CASE_PWRLOSSR:  // Power-loss recovery
-        recovery.enable(!recovery.enabled);
-        Draw_Chkb_Line(ADVSET_CASE_PWRLOSSR + MROWS - index_advset, recovery.enabled);
-        break;
+      #if ENABLED(POWER_LOSS_RECOVERY)
+        case ADVSET_CASE_PWRLOSSR:  // Power-loss recovery
+          recovery.enable(!recovery.enabled);
+          Draw_Chkb_Line(ADVSET_CASE_PWRLOSSR + MROWS - index_advset, recovery.enabled);
+          break;
+      #endif
       default: break;
     }
   }
